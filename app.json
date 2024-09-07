@@ -1,4 +1,13 @@
 {
-  "name": "PlateToppTimer",
-  "displayName": "PlateToppTimer"
+  "expo": {
+    "scheme": "acme",
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "name": "PlateToppTimer",
+    "slug": "PlateToppTimer"
+  }
 }
