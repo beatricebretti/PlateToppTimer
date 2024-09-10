@@ -3,23 +3,19 @@ import React, { createContext, useState } from 'react';
 export const TimerContext = createContext();
 
 export const TimerProvider = ({ children }) => {
-  const [timers, setTimers] = useState([null, null, null, null]); // For 4 cooking plates
-  const [ovenTimer, setOvenTimer] = useState(null); // For the oven
+  const [timers, setTimers] = useState([null, null, null, null]);
 
   const startTimer = (index, duration) => {
-    let newTimers = [...timers];
+    const newTimers = [...timers];
     newTimers[index] = duration;
     setTimers(newTimers);
   };
 
-  const startOvenTimer = (duration) => {
-    setOvenTimer(duration);
-  };
-
   return (
-    <TimerContext.Provider value={{ timers, startTimer, ovenTimer, startOvenTimer }}>
+    <TimerContext.Provider value={{ timers, startTimer }}>
       {children}
     </TimerContext.Provider>
   );
 };
+
 

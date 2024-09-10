@@ -2,12 +2,19 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const TimerButton = ({ time, plate, onPress }) => {
+  const formatTime = (time) => {
+    if (!time) return '00:00'; // Default format for unset time
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  };
+
   return (
     <View style={styles.buttonContainer}>
-      <Text style={styles.plateText}>{`${plate}`}</Text>
+      <Text style={styles.plateText}>{plate}</Text>
       <TouchableOpacity style={styles.timerButton} onPress={onPress}>
         <Text style={styles.timerText}>
-          {time ? formatTime(time) : "+"}
+          {time ? formatTime(time) : '+'}
         </Text>
       </TouchableOpacity>
     </View>
@@ -16,14 +23,14 @@ const TimerButton = ({ time, plate, onPress }) => {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    width: 150, // Ensure the container has a fixed width
-    alignItems: 'flex-start', // Align children to the right
+    width: 150,
+    alignItems: 'flex-start',
     margin: 0,
   },
   plateText: {
     fontSize: 18,
-    marginBottom: 5, // Space between text and button
-    textAlign: 'right', // Align text to the right
+    marginBottom: 5,
+    textAlign: 'right',
   },
   timerButton: {
     backgroundColor: '#ffffff',
@@ -32,16 +39,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-    borderWidth: 2, // Optional: Add a border to the button
-    borderColor: '#ddd', // Optional: Border color
-
-    // Shadow properties
-    shadowColor: '#000', // Shadow color
-    shadowOffset: { width: 0, height: 3 }, // Shadow offset
-    shadowOpacity: 0.2, // Shadow opacity
-    shadowRadius: 5, // Shadow blur radius
-
-    // Elevation for Android
+    borderWidth: 2,
+    borderColor: '#ddd',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
     elevation: 5,
   },
   timerText: {
@@ -51,5 +54,6 @@ const styles = StyleSheet.create({
 });
 
 export default TimerButton;
+
 
 

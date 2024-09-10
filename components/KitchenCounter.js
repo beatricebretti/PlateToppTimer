@@ -6,19 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 const KitchenCounter = ({ timers }) => {
   const navigation = useNavigation();
 
-  // PanResponder for swipe gestures
-  const panResponder = PanResponder.create({
-    onStartShouldSetPanResponder: () => true,
-    onPanResponderRelease: (e, gestureState) => {
-      const { dx } = gestureState;
-      if (dx < -50) { // swipe left
-        navigation.navigate('OvenTimerScreen');
-      }
-    },
-  });
-
   return (
-    <View style={styles.container} {...panResponder.panHandlers}>
+    <View style={styles.container} >
       <View style={styles.kitchenCounter}>
         {Array.from({ length: 4 }, (_, index) => (
           <View key={index} style={styles.circle}>
@@ -52,7 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    width: 280,
+    width: 350,
     height: 280,
     alignItems: 'center',
     marginVertical: 20,

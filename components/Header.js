@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 5,
+    marginHorizontal: 20,
   },
   logo: {
     width: 70,

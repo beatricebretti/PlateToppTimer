@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { TimerContext } from '../contexts/TimerContext';
 import Header from '../components/Header'; // Reuse the same header
-import KitchenCounter from '../components/KitchenCounter'; // Reuse KitchenCounter for consistency
 import TimerButton from '../components/TimerButton';
-
 
 const OvenTimerScreen = () => {
   const { timers } = useContext(TimerContext);
@@ -19,11 +17,24 @@ const OvenTimerScreen = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
       <Header />
       
-      <View style={styles.counterContainer}>
-        <View style={styles.ovenCounter}>
+      {/* Oven Timer */}
+      <View style={styles.ovenCounter}>
+        {/* Oven Buttons inside the oven counter */}
+        <View style={styles.ovenButtonsContainer}>
+          <View style={styles.ovenButton} />
+          <View style={styles.ovenButton} />
+          <View style={styles.ovenButton} />
+          <View style={styles.ovenButton} />
+        </View>
+        
+        <View style={styles.innerBorder}>
+          {/* Gray Bar */}
+          <View style={styles.grayBar} />
+          
+          {/* Timer Text */}
           <Text style={styles.timerText}>
             {formatOvenTimer(ovenTimer)}
           </Text>
@@ -62,56 +73,78 @@ const OvenTimerScreen = () => {
           />
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
     padding: 20,
     backgroundColor: '#ececec',
   },
-  counterContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  alarmsHeader: {
-    marginVertical: 20,
-    alignItems: 'flex-start', // Align the header to the left
-  },
-  alarmsText: {
-    color: '#252525',
-    fontWeight: 'bold',
-    fontSize: 26,
-  },
   ovenCounter: {
-    width: 300,
-    height: 200,
-    borderRadius: 10,
-    backgroundColor: '#333',
+    width: 350,
+    height: 280,
+    padding: 0,
+    borderRadius: 30,
+    backgroundColor: '#d9d9d9',
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#fff',
-    borderWidth: 4,
+    borderColor: '#252525', // Outer border color
+    borderWidth: 3,
+  },
+  innerBorder: {
+    width: '95%',
+    height: '70%', // Reduced height to make room for buttons
+    borderRadius: 30,
+    backgroundColor: '#252525',
+    borderColor: '#d9d9d9',
+    borderWidth: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 10,
+  },
+  grayBar: {
+    width: '60%',
+    height: 10, // Height of the gray bar
+    backgroundColor: '#bfbfbf', // Gray color for the bar
+    borderRadius: 5, // Rounded edges for the bar
+    marginBottom: 70, // Space between the bar and the timer
+  },
+  ovenButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    width: '80%', // Adjust width to position the buttons
+    height: '20%', // Adjust height to fit the buttons above the timer
+    marginBottom: 10, // Space between buttons and timer
+  },
+  ovenButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: '#252525',
   },
   timerText: {
     fontSize: 45,
     color: '#fff',
     fontWeight: 'bold',
   },
+  alarmsHeader: {
+    marginVertical: 20,
+    alignItems: 'flex-start',
+  },
+  alarmsText: {
+    color: '#252525',
+    fontWeight: 'bold',
+    fontSize: 26,
+  },
   row: {
     flexDirection: 'row',
-    justifyContent: 'space-between', // Adjusted for even spacing
+    justifyContent: 'space-between',
     marginBottom: 20,
   },
 });
 
 export default OvenTimerScreen;
-
