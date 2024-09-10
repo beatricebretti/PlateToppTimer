@@ -20,7 +20,7 @@ const SetTimerScreen = ({ route, navigation }) => {
 
   const saveTimer = () => {
     const duration = (hours * 3600) + (minutes * 60) + seconds;
-    startTimer(plate - 1, duration); // plate - 1 because arrays are zero-indexed
+    startTimer(plate - 1, duration); // plate - 1 because arrays are
     navigation.goBack();
   };
   
