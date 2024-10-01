@@ -19,7 +19,9 @@ This is a kitchen timer app built using [Expo](https://expo.dev/) and JavaScript
 
 ## Screenshots
 1. **Home Screen**
-   ![Home Screen](screenshots/IMG_0759.jpg)
+   
+   ![Home Screen](screenshots/HomeScreen1.jpeg)
+   ![Home Screen](screenshots/HomeScreen2.jpeg)
 2. **Set Timer Screen**
    ![Set Timer Screen](path_to_set_timer_image.png)
 
