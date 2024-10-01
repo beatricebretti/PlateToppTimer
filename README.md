@@ -2,6 +2,12 @@
 
 This is a kitchen timer app built using [Expo](https://expo.dev/) and JavaScript. It allows users to set timers for different kitchen plates and keeps track of the countdowns on a kitchen counter interface. The app provides a user-friendly interface to control multiple timers simultaneously.
 
+## Credits
+- **Design & Concept**: Kristoffer c:  
+  Came up with the original idea and created the visual design and user interface of the app.
+- **Coding**: [Beatrice Valdés Bretti](https://www.beatricevaldesbretti.com) :
+  Developed the app functionality and implemented the features.
+  
 ## Features
 
 - **Multiple Timer Support**: Set individual timers for up to four different kitchen plates.
@@ -77,10 +83,3 @@ Contributions are welcome! If you'd like to contribute to the project, please fo
 5. Push to the branch (`git push origin feature-name`).
 6. Open a pull request.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Credits
-
-- Design: Kristoffer c:
