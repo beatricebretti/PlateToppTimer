@@ -1,23 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { TimerContext } from '../contexts/TimerContext';
 
 const TimerButton = ({ time, plate, onPress }) => {
   const formatTime = (time) => {
-    if (!time) return '00:00'; // Default format for unset time
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      if (!time) return '00:00'; 
+      const minutes = Math.floor(time / 60);
+      const seconds = time % 60;
+      return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
   return (
-    <View style={styles.buttonContainer}>
-      <Text style={styles.plateText}>{plate}</Text>
-      <TouchableOpacity style={styles.timerButton} onPress={onPress}>
-        <Text style={styles.timerText}>
-          {time ? formatTime(time) : '+'}
-        </Text>
-      </TouchableOpacity>
-    </View>
+      <View style={styles.buttonContainer}>
+          <Text style={styles.plateText}>{plate}</Text>
+          <TouchableOpacity style={styles.timerButton} onPress={onPress}>
+              <Text style={styles.timerText}>
+                  {time ? formatTime(time) : '+'} 
+              </Text>
+          </TouchableOpacity>
+      </View>
   );
 };
 

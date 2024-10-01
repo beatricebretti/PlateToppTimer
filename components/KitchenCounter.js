@@ -7,12 +7,12 @@ const KitchenCounter = ({ timers }) => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       <View style={styles.kitchenCounter}>
-        {Array.from({ length: 4 }, (_, index) => (
+        {timers.map((timer, index) => (
           <View key={index} style={styles.circle}>
             <Text style={styles.circleText}>
-              {timers[index] ? formatTime(timers[index]) : `${index + 1}`}
+              {timer ? formatTime(timer) : `${index + 1}`} {/* Change here */}
             </Text>
           </View>
         ))}
@@ -21,10 +21,12 @@ const KitchenCounter = ({ timers }) => {
   );
 };
 
-const formatTime = (time) => {
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
-  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+const formatTime = (timer) => {
+  if (!timer) return '00:00'; 
+  const totalSeconds = (timer.minutes || 0) * 60 + (timer.seconds || 0); 
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`; 
 };
 
 const styles = StyleSheet.create({

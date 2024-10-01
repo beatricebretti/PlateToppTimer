@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions, Button } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Header from '../components/Header';
 import { TimerContext } from '../contexts/TimerContext';
@@ -7,73 +7,53 @@ import { TimerContext } from '../contexts/TimerContext';
 const { width } = Dimensions.get('window'); 
 
 const SetTimerScreen = ({ route, navigation }) => {
-  const { plate } = route.params;
-  const { startTimer } = useContext(TimerContext);
-  const [alarmName, setAlarmName] = useState('');
-  const [hours, setHours] = useState(0);
+  const { plate } = route.params; 
+  const { setTimerForPlate } = useContext(TimerContext);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
-  const hoursOptions = Array.from({ length: 24 }, (_, i) => i);
-  const minutesOptions = Array.from({ length: 60 }, (_, i) => i);
-  const secondsOptions = Array.from({ length: 60 }, (_, i) => i);
+  const handleSetTimer = () => {
+    // Ensure minutes and seconds are numbers
+    const validMinutes = parseInt(minutes, 10);
+    const validSeconds = parseInt(seconds, 10);
 
-  const saveTimer = () => {
-    const duration = (hours * 3600) + (minutes * 60) + seconds;
-    startTimer(plate - 1, duration); // plate - 1 because arrays are
-    navigation.goBack();
+    setTimerForPlate(plate, validMinutes, validSeconds); 
+    navigation.goBack(); 
   };
-  
 
   return (
     <View style={styles.container}>
       <Header />
-      <Text style={styles.headerTitle}>Set alarm for plate {plate}</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Alarm Name"
-        value={alarmName}
-        onChangeText={setAlarmName}
-      />
+      <Text style={styles.headerTitle}>Set Timer for Plate {plate}</Text>
+
       <View style={styles.pickerContainer}>
         <View style={styles.pickerWrapper}>
-          <Text style={styles.pickerLabel}>Hours</Text>
-          <Picker
-            selectedValue={hours}
-            style={styles.picker}
-            onValueChange={(itemValue) => setHours(itemValue)}
-          >
-            {hoursOptions.map((hour) => (
-              <Picker.Item key={hour} label={hour.toString()} value={hour} />
-            ))}
-          </Picker>
-        </View>
-        <View style={styles.pickerWrapper}>
-          <Text style={styles.pickerLabel}>Minutes</Text>
+          <Text style={styles.pickerLabel}>Minutes:</Text>
           <Picker
             selectedValue={minutes}
-            style={styles.picker}
             onValueChange={(itemValue) => setMinutes(itemValue)}
+            style={styles.picker}
           >
-            {minutesOptions.map((minute) => (
-              <Picker.Item key={minute} label={minute.toString()} value={minute} />
+            {Array.from({ length: 60 }, (_, i) => (
+              <Picker.Item key={i} label={`${i}`} value={i} />
             ))}
           </Picker>
         </View>
         <View style={styles.pickerWrapper}>
-          <Text style={styles.pickerLabel}>Seconds</Text>
+          <Text style={styles.pickerLabel}>Seconds:</Text>
           <Picker
             selectedValue={seconds}
-            style={styles.picker}
             onValueChange={(itemValue) => setSeconds(itemValue)}
+            style={styles.picker}
           >
-            {secondsOptions.map((second) => (
-              <Picker.Item key={second} label={second.toString()} value={second} />
+            {Array.from({ length: 60 }, (_, i) => (
+              <Picker.Item key={i} label={`${i}`} value={i} />
             ))}
           </Picker>
         </View>
       </View>
-      <TouchableOpacity style={styles.button} onPress={saveTimer}>
+
+      <TouchableOpacity style={styles.button} onPress={handleSetTimer}>
         <Text style={styles.buttonText}>Save</Text>
       </TouchableOpacity>
     </View>
@@ -88,7 +68,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: '#ececec',
   },
-  
   input: {
     borderWidth: 1,
     borderColor: '#252525',
@@ -104,6 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '90%',
     marginVertical: 10,
+    paddingTop: 30
   },
   pickerWrapper: {
     alignItems: 'center',

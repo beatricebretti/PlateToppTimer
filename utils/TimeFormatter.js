@@ -1,4 +1,3 @@
-// utils/TimerFormatter.js
 
 export const formatTime = (time) => {
     const minutes = Math.floor(time / 60);

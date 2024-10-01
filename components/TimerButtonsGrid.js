@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import TimerButton from './TimerButton'; // Adjust path as needed
+import TimerButton from './TimerButton'; 
 
 const TimerButtonsGrid = () => {
   return (
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   row: {
-    flexDirection: 'row', // Align buttons horizontally
+    flexDirection: 'row', 
   },
 });
 
